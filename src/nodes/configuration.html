@@ -1,0 +1,90 @@
+<script type="text/x-red" data-help-name="configuration">
+    <p>Configures the connection to a WEBfactory i4connected server.</p>
+           
+    <h3>Details</h3>
+    <p>This settings can be used in <code>read</code>  <code>write</code> and <code>signals</code> Nodes</p>
+        <p><code>Host</code> The url to the WEBfactory i4connected server.</p>
+    
+    </script>
+
+<script type="text/x-red" data-template-name="configuration">
+
+    <div class="form-row">
+        <label for="node-config-input-api"><i class="fa fa-server "></i> Api url</label>
+        <input type="text" id="node-config-input-api" placeholder="The url to the api">
+    </div>
+
+    <hr/>
+
+    <div class="form-row">
+        <label for="node-config-input-identity"><i class="fa fa-server "></i> Identity url</label>
+        <input type="text" id="node-config-input-identity" placeholder="The url to the identity">
+    </div>
+
+    <div class="form-row">
+        <label for="node-config-input-clientId"><i class="fa fa-user"></i> Client id</label>
+        <input type="text" id="node-config-input-clientId" placeholder="The client id">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-clientSecret"><i class="fa fa-lock"></i> Client secret</label>
+        <input type="password" id="node-config-input-clientSecret" placeholder="The client secret">
+    </div> 
+    <div class="form-row">
+        <label for="node-config-input-scope"><i class="fa fa-server"></i> Scope</label>
+        <input type="text" id="node-config-input-scope" placeholder="The client scope">
+    </div>
+
+    <hr/>
+
+    <div class="form-row">
+        <label for="node-config-input-username"><i class="fa fa-user"></i> Username</label>
+        <input type="text" id="node-config-input-username"  placeholder="The username">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password"><i class="fa fa-lock"></i> Password</label>
+        <input type="password" id="node-config-input-password"  placeholder="The users password">
+    </div> 
+
+
+</script>
+
+
+
+<script type="text/javascript">
+    RED.nodes.registerType('configuration', {
+        category: 'config',
+        defaults: {
+            api: {
+                required: true
+            },
+            identity: {
+                required: true
+            },
+        },
+        credentials: {
+            username: {
+                type: "text",
+                required: true
+            },
+            password: {
+                type: "password",
+                required: true
+            },
+            clientId: {
+                type: "text",
+                required: true
+            },
+            clientSecret: {
+                type: "password",
+                required: true
+            },
+            scope: {
+                type: "text",
+                required: true
+            }
+        },
+        label: function () {
+            return this.api;
+        }
+    });
+</script>

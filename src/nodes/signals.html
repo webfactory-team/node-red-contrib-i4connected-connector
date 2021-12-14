@@ -1,0 +1,82 @@
+<script type="text/x-red" data-help-name="signals">
+    <p>Connects to a WEBfactory i4connected api and publishes signals.</p>
+        
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">string</span>
+        </dt>
+        <dd>If not defined the node will subscribe to the provided signal id, if set to 'unsubscribe' it will unsubscribe from the provided signal id</dd>
+        <dt>topic 
+            <span class="property-type">guid</span></dt>
+        <dd>The signal id of the signal which should be subscribe or unsubscribe</dd>
+    </dl>
+
+    <h3>Details</h3>
+    <p><code>msg.payload</code> is used as the command property either empty for subscribe or 'unsubscribe' for unsubscribe.</p>
+    <p><code>msg.topic</code> is used as the identifier of the signal, the signal id.</p>
+
+     <h3>Outputs</h3>
+         <ol class="node-ports">
+             <li>Standard output
+                 <dl class="message-properties">
+                     <dt>payload <span class="property-type">Signal</span></dt>
+                     <dd>The signal object.</dd>
+                 </dl>
+                 <dl class="message-properties">
+                    <dt>topic <span class="property-type">guid</span></dt>
+                    <dd>The signal id.</dd>
+                </dl>
+             </li>
+         </ol>
+    
+    <h3>Details</h3>
+        <p><code>msg.payload</code> is used as the value object of the signal.</p>
+        <p><code>msg.topic</code> is used as the identifier of the signal, the signal id.</p>
+    
+    </script>
+
+<script type="text/x-red" data-template-name="signals">
+    <!-- By convention, most nodes have a 'name' property. The following div -->
+    <!-- provides the necessary field. Should always be the last option      -->
+     <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-server "></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="server">
+    </div>
+
+     <div class="form-row">
+         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+         <input type="text" id="node-input-name" placeholder="Name">
+     </div>
+ </script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('signals', {
+        category: 'i4connected', // the palette category
+        defaults: { // defines the editable properties of the node
+            server: {
+                value: "",
+                type: "configuration"
+            },
+            signals: {
+                value: [{
+                    name: "*"
+                }]
+            },
+            name: {
+                value: ""
+            } //  along with default values.
+        },
+        inputs: 1, // set the number of inputs - only 0 or 1
+        outputs: 1, // set the number of outputs - 0 to n
+        // set the icon (held in icons dir below where you save the node)
+        icon: "bridge.png", // saved in  icons/myicon.png
+        color: "#E86C58",
+        label: function () { // sets the default label contents
+            return this.name || "signals";
+        },
+        labelStyle: function () { // sets the class to apply to the label
+            return this.name ? "node_label_italic" : "";
+        }
+    });
+</script>

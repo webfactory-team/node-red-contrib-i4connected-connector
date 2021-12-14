@@ -1,0 +1,61 @@
+<script type="text/x-red" data-help-name="write">
+    <p>Connects to a WEBfactory i4connected api and writes signals.</p>
+        
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">WriteSignalInfo</span>
+        </dt>
+        <dd>The payload of the message to write.</dd>
+        <dt>topic 
+            <span class="property-type">guid</span></dt>
+        <dd>The signal id of the signal to write.</dd>
+    </dl>
+    
+    <h3>Details</h3>
+    <p><code>msg.payload</code> is used as the value object of the signal. It has the properties 'value' and 'timestamp' (ISOString) </p>
+    <p><code>msg.topic</code> is used as the identifier of the signal, the signal id.</p>
+    
+    </script>
+
+
+<script type="text/x-red" data-template-name="write">
+    <!-- By convention, most nodes have a 'name' property. The following div -->
+    <!-- provides the necessary field. Should always be the last option      -->
+     <div class="form-row">
+        <label for="node-input-server"><i class="fa fa-server "></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="server">
+    </div>
+
+     <div class="form-row">
+         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+         <input type="text" id="node-input-name" placeholder="Name">
+     </div>
+ </script>
+
+<script type="text/javascript">
+
+    RED.nodes.registerType('write', {
+        category: 'i4connected', // the palette category
+        defaults: { // defines the editable properties of the node
+            server: {
+                value: "",
+                type: "configuration"
+            },
+            name: {
+                value: ""
+            } //  along with default values.
+        },
+        inputs: 1, // set the number of inputs - only 0 or 1
+        outputs: 0, // set the number of outputs - 0 to n
+        // set the icon (held in icons dir below where you save the node)
+        icon: "bridge-dash.png", // saved in  icons/myicon.png
+        color: "#E86C58",
+        label: function () { // sets the default label contents
+            return this.name || "write";
+        },
+        labelStyle: function () { // sets the class to apply to the label
+            return this.name ? "node_label_italic" : "";
+        }
+    });
+</script>
