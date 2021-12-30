@@ -20,14 +20,15 @@ export class TokenProvider {
 
     public start() {
         this.logger.logger.debug(`Start token checker`);
-        this.tokenChecker = setInterval(async () => {
-            try {
-                this.logger.logger.debug(`Check token`);
-                await this.getTokenInfo();
-            } catch (err) {
-                this.logger.logger.error(err);
-            }
-        }, 10000);
+        if (!this.tokenChecker) {
+            this.tokenChecker = setInterval(async () => {
+                try {
+                    await this.getTokenInfo();
+                } catch (err) {
+                    this.logger.logger.error(err);
+                }
+            }, 10000);
+        }
     }
 
     public stop() {
@@ -36,7 +37,6 @@ export class TokenProvider {
             clearInterval(this.tokenChecker);
             this.tokenChecker = null;
         }
-        this.tokens.unsubscribe();
     }
 
     public async getAccessToken() {
