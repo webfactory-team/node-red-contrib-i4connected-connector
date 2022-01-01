@@ -1,0 +1,9 @@
+{
+    "write": {
+        "status": {
+            "failed": "failed",
+            "written": "written",
+            "writing": "writing"
+        }
+    }
+}

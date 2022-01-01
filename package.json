@@ -5,8 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "html": "copyfiles -u 1 \"./src/**/*.html\" \"dist\"",
+    "locales": "copyfiles -u 1 \"./src/nodes/locales/**/*.json\" \"dist\"",
     "prepublish": "npm run build",
-    "build": "tsc && npm run html",
+    "build": "tsc && npm run html && npm run locales",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "homepage": "https://webfactory-i4.com",

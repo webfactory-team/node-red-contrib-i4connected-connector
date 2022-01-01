@@ -1,0 +1,13 @@
+{
+    "signals": {
+        "status": {
+            "disconnected": "Getrennt",
+            "connection-slow": "Verbindung langasm",
+            "error": "Fehler",
+            "connecting": "Verbinden",
+            "connected": "Verbunden",
+            "reconnecting": "Widerverbinden",
+            "not-connected": "Nicht verbunden"
+        }
+    }
+}

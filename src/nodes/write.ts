@@ -29,7 +29,7 @@ class Write extends NodeBase {
     }
 
     public onInput = async (msg: Message, send: (msg: any) => void, done: (err?: any) => void) => {
-        this.node.status({ fill: "green", shape: "ring", text: "writing" });
+        this.node.status({ fill: "green", shape: "ring", text: "write.status.writing" });
         try {
             if (msg.topic) {
                 if (msg.payload) {
@@ -41,16 +41,16 @@ class Write extends NodeBase {
                     const result = await this.client.writeSignal(write);
 
                     if (!result.successful) {
-                        this.node.status({ fill: "red", shape: "ring", text: "failed" });
+                        this.node.status({ fill: "red", shape: "ring", text: "write.status.failed" });
                         done(result.errorMessage);
                     } else {
-                        this.node.status({ fill: "green", shape: "dot", text: "written" });
+                        this.node.status({ fill: "green", shape: "dot", text: "write.status.written" });
                         done();
                     }
                 }
             }
         } catch (err) {
-            this.node.status({ fill: "red", shape: "ring", text: "failed" });
+            this.node.status({ fill: "red", shape: "ring", text: "write.status.failed" });
             done(err);
         } finally {
             send(msg);

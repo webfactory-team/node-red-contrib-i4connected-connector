@@ -55,15 +55,15 @@ class Signals extends NodeBase {
     }
 
     public initializeInternal() {
-        this.node.status({ fill: "yellow", shape: "ring", text: "node-red:common.status.not-connected" });
+        this.node.status({ fill: "yellow", shape: "ring", text: "signals.status.not-connected" });
         this.client = this.createClient();
         this.subscribeClientEvents();
 
         this.client.start().catch(e => {
             this.logger.error(e);
-            this.node.status({ fill: "red", shape: "dot", text: "Could not start" });
+            this.node.status({ fill: "red", shape: "dot", text: "signals.status.error" });
         });
-        this.node.status({ fill: "green", shape: "ring", text: "node-red:common.status.connecting" });
+        this.node.status({ fill: "green", shape: "ring", text: "signals.status.connecting" });
     }
 
     private subscribeClientEvents() {
@@ -74,24 +74,24 @@ class Signals extends NodeBase {
         this.serverStateSubscription = this.client.serverState.subscribe(async x => {
             switch (x) {
                 case "reconnecting":
-                    this.node.status({ fill: "blue ", shape: "ring", text: x });
+                    this.node.status({ fill: "blue ", shape: "ring", text: "signals.status.reconnecting" });
                     break;
                 case "disconnected":
-                    this.node.status({ fill: "red", shape: "ring", text: "node-red:common.status.disconnected" });
+                    this.node.status({ fill: "red", shape: "ring", text: "signals.status.disconnected" });
                     break;
                 case "connectionSlow":
-                    this.node.status({ fill: "yellow", shape: "ring", text: x });
+                    this.node.status({ fill: "yellow", shape: "ring", text: "signals.status.connection-slow" });
                     break;
                 case "error":
-                    this.node.status({ fill: "red", shape: "ring", text: "node-red:common.status.error" });
+                    this.node.status({ fill: "red", shape: "ring", text: "signals.status.error" });
                     await this.reconnect();
                     break;
                 case "starting":
-                    this.node.status({ fill: "green", shape: "ring", text: "node-red:common.status.connecting" });
+                    this.node.status({ fill: "green", shape: "ring", text: "signals.status.connecting" });
                     break;
                 case "connected":
                 case "reconnected":
-                    this.node.status({ fill: "green", shape: "dot", text: "node-red:common.status.connected" });
+                    this.node.status({ fill: "green", shape: "dot", text: "signals.status.connected" });
                     break;
             }
         });

@@ -1,0 +1,9 @@
+{
+    "write": {
+        "status": {
+            "failed": "Fehlgeschlagen",
+            "written": "Geschrieben",
+            "writing": "Schreiben"
+        }
+    }
+}

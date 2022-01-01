@@ -1,0 +1,13 @@
+{
+    "signals": {
+        "status": {
+            "disconnected": "disconnected",
+            "connection-slow": "connection slow",
+            "error": "error",
+            "connecting": "connecting",
+            "connected": "connected",
+            "reconnecting": "reconnecting",
+            "not-connected": "not connected"
+        }
+    }
+}
